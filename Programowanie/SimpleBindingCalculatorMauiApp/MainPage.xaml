@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleBindingCalculatorMauiApp.MainPage"
+             x:Name="thisPage"
+             BindingContext="{x:Reference thisPage}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label Text="Podaj pierwszą liczbę:"
+                   FontSize="20"/>
+            <Entry Text="{Binding FirstStrNumber}"/>
+            <Label Text="Podaj drugą liczbę:"/>
+            <Entry Text="{Binding SecondStrNumber}"/>
+            <Button Text="Oblicz"
+                    Clicked="Button_Clicked"/>
+            <Label Text="{Binding Result}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
