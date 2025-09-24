@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LeyoutMauiApp.MainPage"
+             Background="Bisque">
+
+    <StackLayout>
+        <Label Text="Label w StackLayout"
+               Background="Red"/>
+        <Button Text="1"/>
+        <Label Text="Label w StackLayout"
+               Background="Red"
+               FontSize="20"/>
+        <Button Text="2"/>
+
+        <StackLayout Orientation="Horizontal"
+                     Background="Aqua">
+            <Label Text="Inny label"
+                   Background="Brown"
+                   FontSize="50"/>
+            <Button Text="Przycisk"/>
+        </StackLayout>
+        <Label Text="Kolejny label"
+               BackgroundColor="Beige"
+               FontSize="30"/>
+
+        <FlexLayout FlowDirection="LeftToRight"
+                    Wrap="Wrap">
+            <Button Text="1"/>
+            <Button Text="2"/>
+            <Button Text="3"/>
+            <Button Text="4"/>
+        </FlexLayout>
+
+        <Grid Background="White"
+              ColumnDefinitions="50, 40, *, 20, 2*, auto"
+              RowDefinitions="50, 60">
+            <Button Text="1"/>
+            <Button Text="2"
+                    Grid.Column="1"/>
+            <Button Text="3"
+                    Grid.Column="1"
+                    Grid.Row="1"/>
+            <Button Text="4"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"/>
+        </Grid>
+        
+    </StackLayout>
+
+</ContentPage>

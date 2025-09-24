@@ -95,6 +95,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventVsBindingMauiApp", "Ev
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBindingCalculatorMauiApp", "SimpleBindingCalculatorMauiApp\SimpleBindingCalculatorMauiApp.csproj", "{6C16AF3C-304F-4C99-A573-8EBAC971305E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeyoutMauiApp", "LeyoutMauiApp\LeyoutMauiApp.csproj", "{A569A8BE-0D1C-4EF9-8FA1-387D59763963}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -450,6 +452,19 @@ Global
 		{6C16AF3C-304F-4C99-A573-8EBAC971305E}.Release|x64.Build.0 = Release|Any CPU
 		{6C16AF3C-304F-4C99-A573-8EBAC971305E}.Release|x86.ActiveCfg = Release|Any CPU
 		{6C16AF3C-304F-4C99-A573-8EBAC971305E}.Release|x86.Build.0 = Release|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|x64.Build.0 = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Debug|x86.Build.0 = Debug|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Release|x64.ActiveCfg = Release|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Release|x64.Build.0 = Release|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Release|x86.ActiveCfg = Release|Any CPU
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -498,6 +513,7 @@ Global
 		{F5DA5574-6C13-424C-9A21-9435530BE27A} = {5F0F7796-3E59-484D-B001-B70926FF8A27}
 		{1D1D946F-2A9F-46B9-B834-8C3004B66C2C} = {5F0F7796-3E59-484D-B001-B70926FF8A27}
 		{6C16AF3C-304F-4C99-A573-8EBAC971305E} = {5F0F7796-3E59-484D-B001-B70926FF8A27}
+		{A569A8BE-0D1C-4EF9-8FA1-387D59763963} = {5F0F7796-3E59-484D-B001-B70926FF8A27}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF5DEF07-D041-4191-AF7B-6506152135A7}
