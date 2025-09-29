@@ -6,8 +6,9 @@
              BindingContext="{x:Reference thisPage}">
 
     <ScrollView>
-        <StackLayout Spacing="10">
-            <StackLayout Orientation="Horizontal">
+        <StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
                 <Border Stroke="#C49B33"
                         StrokeThickness="4"
                         StrokeShape="RoundRectangle 40,0,0,40"
@@ -16,17 +17,19 @@
                     <Label Text=".NET MAUI"
                            TextColor="White"
                            FontSize="18"
-                           FontAttributes="Bold" /> 
+                           FontAttributes="Bold" />
                 </Border>
 
                 <Border StrokeThickness="4"
                         StrokeShape="RoundRectangle 40,0,0,40"
                         Background="#2B0B98"
-                        Padding="16,8"> 
+                        Padding="16,8">
                     <Border.Stroke>
                         <LinearGradientBrush EndPoint="0,1">
                             <GradientStop Color="Orange"
                                           Offset="0.1" />
+                            <GradientStop Color="red"
+                                          Offset="0.5" />
                             <GradientStop Color="Brown"
                                           Offset="1.0" />
                         </LinearGradientBrush>
@@ -39,7 +42,7 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal"
-                          Spacing="10">
+                         Spacing="10">
                 <Label Text="Wybierz datę:"/>
                 <DatePicker MinimumDate="{Binding MinimumDate}"
                             MaximumDate="{Binding MaximumDate}"
@@ -74,9 +77,9 @@
             <Label Text="Podmień zdjęcia"/>
             <Image Source="{Binding SelectedImage}"
                    HeightRequest="185"
-                   Aspect="AspectFit"/> 
+                   Aspect="AspectFit"/>
             <Button Text="Zmień zdjęcie"
-                    Command="{Binding ChangeImage}"/>
+                    Command="{Binding ChangeImage}" />
 
             <Label Text="Poziom załadowania danych:"/>
             <ProgressBar Progress="{Binding ProgresDataLevel}"
@@ -93,54 +96,9 @@
                 <RadioButton Content="Kot" Value="{Binding Content,Source={RelativeSource Self}}"/>
                 <RadioButton Content="Pies" Value="{Binding Content,Source={RelativeSource Self}}"/>
                 <RadioButton Content="Krowa" Value="{Binding Content,Source={RelativeSource Self}}"/>
+                <RadioButton Content="Chomik" Value="{Binding Content,Source={RelativeSource Self}}"/>
             </StackLayout>
             <Label Text="{Binding FavoriteAnimal,StringFormat='Ulubione zwierzę to: {0}'}"/>
-
-            <Label Text="Wyszukaj:"/>
-            <SearchBar SearchCommand="{Binding ChangeSearchData}"
-                       SearchCommandParameter="{Binding Text,Source={RelativeSource Self}}"
-                       Text="{Binding SearchData}"/>
-            <Label Text="{Binding SearchData}"/>
-
-            <StackLayout Orientation="Horizontal"
-                         Spacing="10">
-                <Label Text="Zwiększ lub zmniejsz:"
-                       VerticalOptions="Center"/>
-                <Stepper Minimum="0"
-                         Maximum="100"
-                         Increment="2"
-                         Value="{Binding StepperValue}"/>   
-                <Label Text="{Binding StepperValue}"/>
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal"
-                         Spacing="10">
-                <Label Text="Wybierz:"
-                       VerticalOptions="Center"/>
-                <Switch IsToggled="{Binding IsOn}"/>
-                <Label Text="{Binding IsOn}"/>
-                <ActivityIndicator IsRunning="{Binding IsOn}"/>
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal"
-             Spacing="10">
-                <Label Text="Kolorowy prostokąt:"
-                       VerticalOptions="Center"/>
-                <BoxView Color="red"
-                         WidthRequest="50"
-                         HeightRequest="60"
-                         CornerRadius="10"/>    
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal"
-                         Spacing="10">
-                <Label Text="Wybierz pozycję:"
-                       VerticalOptions="Center"/>
-                <Picker ItemsSource="{Binding AnimalCollection}"
-                        SelectedItem="{Binding SelectedAnimal}"/>
-                <Label Text="{Binding SelectedAnimal}"
-                       VerticalOptions="Center"/>
-            </StackLayout>
 
         </StackLayout>
     </ScrollView>

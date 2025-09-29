@@ -25,13 +25,6 @@ namespace ControlsMauiApp
             set { selectDate = value; OnPropertyChanged(); }
         }
 
-        private TimeSpan selectTime;
-        public TimeSpan SelectTime
-        {
-            get { return selectTime; }
-            set { selectTime = value; OnPropertyChanged(); }
-        }
-
         private bool isLegalAge;
         public bool IsLegalAge
         {
@@ -89,29 +82,6 @@ namespace ControlsMauiApp
             }
         }
 
-        private string searchData;
-        public string SearchData
-        {
-            get { return searchData; }
-            set { searchData = value; OnPropertyChanged(); }
-        }
-
-        private Command changeSearchData;
-        public Command ChangeSearchData
-        {
-            get
-            {
-                if (changeSearchData == null)
-                    changeSearchData = new Command<string>(
-                        (string data) =>
-                        {
-
-                        }
-                        );
-                return changeSearchData;
-            }
-        }
-
         private string favoriteAnimal;
         public string FavoriteAnimal
         {
@@ -119,31 +89,9 @@ namespace ControlsMauiApp
             set { favoriteAnimal = value; OnPropertyChanged(); }
         }
 
-        private int stepperValue;
-        public int StepperValue
-        {
-            get { return stepperValue; }
-            set { stepperValue = value; OnPropertyChanged(); }
-        }
-
-        private bool isOn;
-        public bool IsOn
-        {
-            get { return isOn; }
-            set { isOn = value; OnPropertyChanged(); }
-        }
-
-        public ObservableCollection<string> AnimalCollection { get; set; }
-
-        private string selectedAnimal;
-        public string SelectedAnimal
-        {
-            get { return selectedAnimal; }
-            set { selectedAnimal = value; OnPropertyChanged(); }
-        }
-
         private int currentImageNumber;
         private List<string> images;
+
         private double changePrograsDataLevel;
         public MainPage()
         {
@@ -151,10 +99,8 @@ namespace ControlsMauiApp
             MaximumDate = new DateTime(2025, 12, 31);
             SelectDate = DateTime.Now;
 
-            SelectTime = TimeSpan.Zero;
-
             currentImageNumber = 0;
-            images = new() { "dotnet_bot.png", "dotnet_bot_two.png" };
+            images = new(){ "dotnet_bot.png", "dotnet_bot_two.png" };
             SelectedImage = images[currentImageNumber];
 
             changePrograsDataLevel = 0.1;
@@ -162,17 +108,14 @@ namespace ControlsMauiApp
 
             FavoriteAnimal = "Pies";
 
-            StepperValue = 0;
-
-            AnimalCollection = new ObservableCollection<string>()
-            {
-                "Pies",
-                "Kot",
-                "Krowa"
-            };
-            SelectedAnimal = AnimalCollection.First();
-
             InitializeComponent();
+        }
+
+        private TimeSpan selectTime;
+        public TimeSpan SelectTime
+        {
+            get { return selectTime; }
+            set { selectTime = value; OnPropertyChanged(); }
         }
     }
 }
