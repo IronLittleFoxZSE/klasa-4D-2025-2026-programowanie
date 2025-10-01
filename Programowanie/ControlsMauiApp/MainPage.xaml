@@ -100,6 +100,175 @@
             </StackLayout>
             <Label Text="{Binding FavoriteAnimal,StringFormat='Ulubione zwierzę to: {0}'}"/>
 
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+                <Label Text="Zwiększ lub zmniejsz:"
+                       VerticalOptions="Center"/>
+                <Stepper Minimum="0"
+                         Maximum="100"
+                         Increment="2"
+                         Value="{Binding StepperValue}"/>
+                <Label Text="{Binding StepperValue}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+                <Label Text="Wybierz:"
+                       VerticalOptions="Center"/>
+                <Switch IsToggled="{Binding IsOn}"/>
+                <Label Text="{Binding IsOn}"/>
+                <ActivityIndicator IsRunning="{Binding IsOn}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+                <Label Text="Kolorowy prostokąt:"
+                       VerticalOptions="Center"/>
+                <BoxView Color="red"
+                         WidthRequest="50"
+                         HeightRequest="60"
+                         CornerRadius="10"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+                <Label Text="Wybierz pozycję:"
+                       VerticalOptions="Center"/>
+                <Picker ItemsSource="{Binding AnimalCollection}"
+                        SelectedItem="{Binding SelectedAnimal}"/>
+                <Label Text="{Binding SelectedAnimal}"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+                <Label Text="Wybierz pozycję:"
+                       VerticalOptions="Center"/>
+                <Picker ItemsSource="{Binding CarsCollection}"
+                        SelectedItem="{Binding SelectedCar}"
+                        ItemDisplayBinding="{Binding Name}"/>
+                <Label Text="{Binding SelectedCar.Name}"
+                       VerticalOptions="Center"/>
+                <Label Text="{Binding SelectedCar.Description}"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+
+            <CollectionView ItemsSource="{Binding CarsCollection}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedCar}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="{Binding Name}"/>
+                            <Label Text="{Binding Description}"
+                                   FontAttributes="Italic"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <CarouselView ItemsSource="{Binding Monkeys}"
+                          IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Border Stroke="DarkGray"
+                                    StrokeShape="RoundRectangle 5"
+                                    Margin="20"
+                                    Padding="20"
+                                    HeightRequest="360"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="18"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                    <Image Source="{Binding ImageName}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="150"
+                                           WidthRequest="150"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Location}"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Details}"
+                                           FontAttributes="Italic"
+                                           HorizontalOptions="Center"
+                                           MaxLines="5"
+                                           LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </Border>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="DarkGray"
+                           HorizontalOptions="Center"
+                           Margin="20"/>
+
+            <SwipeView>
+                <SwipeView.LeftItems>
+                    <SwipeItems>
+                        <SwipeItem Text="Favorite"
+                                   IconImageSource="favorite.png"
+                                   BackgroundColor="LightGreen"/>   
+                        <SwipeItem Text="Delete"
+                                   IconImageSource="delete.png"
+                                   BackgroundColor="LightPink"/>
+                    </SwipeItems>
+                </SwipeView.LeftItems>
+                <!-- Content -->
+                <Label Text="Przeciągnij mnie w bok" FontSize="18" Grid.Row="0"/>
+            </SwipeView>
+
+            <Label Text="Wypełnij formularz"
+                   FontSize="20"/>
+            <TableView Intent="Data">
+                <TableRoot>
+                    <!-- Sekcja 1: Dane osobowe -->
+                    <TableSection Title="Dane osobowe">
+                        <EntryCell Label="Imię:"
+                                   Text="{Binding FirstName}"
+                                   Placeholder="Podaj imię" />
+
+                        <EntryCell Label="Nazwisko:"
+                                   Text="{Binding LastName}"
+                                   Placeholder="Podaj nazwisko" />
+
+                        <EntryCell Label="Email:"
+                                   Text="{Binding Email}"
+                                   Placeholder="Podaj adres email"
+                                   Keyboard="Email" />
+
+                        <SwitchCell Text="Chcę otrzymywać newsletter"
+                                    On="{Binding IsNewsletterEnabled}" />
+                    </TableSection>
+
+                    <!-- Sekcja 2: Preferencje -->
+                    <TableSection Title="Preferencje">
+                        <TextCell Text="O aplikacji"
+                                  Detail="Kliknij, aby wyświetlić szczegóły"
+                                  Command="{Binding AboutCommand}" />
+
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Label Text="Wybierz kolor motywu:"
+                                       VerticalOptions="Center" />
+
+                                <Picker Title="Motyw"
+                                        WidthRequest="150"
+                                        ItemsSource="{Binding Themes}"
+                                        SelectedItem="{Binding SelectedTheme}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+
+                </TableRoot>
+            </TableView>
+
         </StackLayout>
     </ScrollView>
 

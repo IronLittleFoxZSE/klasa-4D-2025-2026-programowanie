@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using ControlsMauiApp.Data;
+using System.Collections.ObjectModel;
 
 namespace ControlsMauiApp
 {
@@ -89,6 +90,87 @@ namespace ControlsMauiApp
             set { favoriteAnimal = value; OnPropertyChanged(); }
         }
 
+        private TimeSpan selectTime;
+        public TimeSpan SelectTime
+        {
+            get { return selectTime; }
+            set { selectTime = value; OnPropertyChanged(); }
+        }
+
+        private int stepperValue;
+        public int StepperValue
+        {
+            get { return stepperValue; }
+            set { stepperValue = value; OnPropertyChanged(); }
+        }
+
+        private bool isOn;
+        public bool IsOn
+        {
+            get { return isOn; }
+            set { isOn = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<string> AnimalCollection { get; set; }
+
+        private string selectedAnimal;
+        public string SelectedAnimal
+        {
+            get { return selectedAnimal; }
+            set { selectedAnimal = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<Car> CarsCollection { get; set; }
+        private Car selectedCar;
+        public Car SelectedCar
+        {
+            get { return selectedCar; }
+            set { selectedCar = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<Monkey> Monkeys { get; private set; }
+
+        #region TableView
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public bool IsNewsletterEnabled { get; set; }
+
+        public ObservableCollection<string> Themes { get; }
+
+        private string selectedTheme;
+        public string SelectedTheme
+        {
+            get => selectedTheme;
+            set
+            {
+                if (selectedTheme != value)
+                {
+                    selectedTheme = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private Command aboutCommand;
+        public Command AboutCommand
+        {
+            get
+            {
+                if (aboutCommand == null)
+                    aboutCommand = new Command(
+                        () =>
+                        {
+
+                        }
+                        );
+                return aboutCommand;
+            }
+        }
+
+        #endregion
+
         private int currentImageNumber;
         private List<string> images;
 
@@ -108,14 +190,60 @@ namespace ControlsMauiApp
 
             FavoriteAnimal = "Pies";
 
+            AnimalCollection = new ObservableCollection<string>()
+            {
+                "Pies",
+                "Kot",
+                "Krowa"
+            };
+            SelectedAnimal = AnimalCollection.First();
+
+            CarsCollection = new ObservableCollection<Car>()
+            {
+                new Car(){ Name="Fiat", Description = "Kultowy mały fiat"},
+                new Car(){ Name="Audi", Description = "A tutaj jego opis"},
+            };
+            SelectedCar = CarsCollection.First();
+
+            CreateMonkeyCollection();
+
+            Themes = new ObservableCollection<string>
+            {
+                "Jasny",
+                "Ciemny",
+                "Systemowy"
+            };
+            SelectedTheme = Themes.First();
+
             InitializeComponent();
         }
 
-        private TimeSpan selectTime;
-        public TimeSpan SelectTime
+        void CreateMonkeyCollection()
         {
-            get { return selectTime; }
-            set { selectTime = value; OnPropertyChanged(); }
+            Monkeys =
+            [
+                new Monkey
+                {
+                    Name = "Baboon",
+                    Location = "Africa & Asia",
+                    Details = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
+                    ImageName = "baboon.jpg"
+                },
+                new Monkey
+                {
+                    Name = "Capuchin Monkey",
+                    Location = "Central & South America",
+                    Details = "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
+                    ImageName = "capuchin_monkey.jpg"
+                },
+                new Monkey
+                {
+                    Name = "Blue Monkey",
+                    Location = "Central and East Africa",
+                    Details = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
+                    ImageName = "blue_monkey.jpg"
+                },
+            ];
         }
     }
 }
