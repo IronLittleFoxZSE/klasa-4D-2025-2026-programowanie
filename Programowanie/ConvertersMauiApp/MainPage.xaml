@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ConvertersMauiApp.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:ConvertersMauiApp.Converters"
+             x:Name="thisPage"
+             BindingContext="{x:Reference thisPage}">
+    <ContentPage.Resources>
+        <converters:GradeToTextGradeConverter x:Key="GradeToTextGradeConverter" />
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+        <converters:RgbToColorConverter x:Key="RgbToColorConverter" />
+        <converters:BoolToTextConverter x:Key="BoolToTextSub"
+                                        FalseMessage="Szkoda :("
+                                        TrueMessage="Dziękuję" />
+        <converters:BoolToTextConverter x:Key="BoolToTextLegalAge"
+                                        FalseMessage="Niepełnoletni"
+                                        TrueMessage="Pełnoletni" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Wprowadź ocenę ucznia jako liczba:" />
+            <Entry x:Name="gradeEntry" />
+            <Label Text="{Binding Text, Source={x:Reference gradeEntry}, Converter={x:StaticResource GradeToTextGradeConverter}}" />
+            <!--
+            <Entry Text="{Binding Grade}"/>
+            <Label Text="{Binding TextGrade}"/>
+            -->
+
+            <Label Text="Zaznaczony - zielony; nie zaznaczony - czerwony" />
+            <CheckBox x:Name="colorChangeCheckBox"
+                      IsChecked="False" />
+            <Label Text="Ten kolor tekstu będzie się zmieniał"
+                   TextColor="{Binding IsChecked, Source={x:Reference colorChangeCheckBox}, Converter={x:StaticResource BoolToColorConverter}}" />
+
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Subskrypcja: "
+                       VerticalOptions="Center" />
+                <CheckBox x:Name="subCheckBox" />
+                <Label Text="{Binding IsChecked, Source={x:Reference subCheckBox}, Converter={x:StaticResource BoolToTextSub}}"
+                       TextColor="{Binding IsChecked, Source={x:Reference subCheckBox}, Converter={x:StaticResource BoolToColorConverter}}"
+                       VerticalOptions="Center" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Zaznacz jeśli jesteś pełnoletni: "
+                       VerticalOptions="Center" />
+                <CheckBox x:Name="legalAgeCheckBox" />
+                <Label Text="{Binding IsChecked, Source={x:Reference legalAgeCheckBox}, Converter={x:StaticResource BoolToTextLegalAge}}"
+                       TextColor="{Binding IsChecked, Source={x:Reference legalAgeCheckBox}, Converter={x:StaticResource BoolToColorConverter}}"
+                       VerticalOptions="Center" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Zgoda rodzica: "
+                       VerticalOptions="Center" />
+                <CheckBox x:Name="parentCheckBox" />
+                <Label TextColor="{Binding IsChecked, Source={x:Reference parentCheckBox}, Converter={x:StaticResource BoolToColorConverter}}"
+                       VerticalOptions="Center">
+                    <Label.Text>
+                        <Binding Path="IsChecked"
+                                 Source="{x:Reference parentCheckBox}">
+                            <!--<Binding.Source>
+                                <x:Reference>
+                                    parentCheckBox
+                                </x:Reference>
+                            </Binding.Source>-->
+                            <Binding.Converter>
+                                <converters:BoolToTextConverter FalseMessage="Nie"
+                                                                TrueMessage="Tak" />
+                            </Binding.Converter>
+                        </Binding>
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+
+            <Label Text="Czerwony" />
+            <Slider x:Name="redSlider"
+                    Maximum="255"
+                    Minimum="0" />
+            <Label Text="Zielony" />
+            <Slider x:Name="greenSlider"
+                    Maximum="255"
+                    Minimum="0" />
+            <Label Text="Niebieski" />
+            <Slider x:Name="blueSlider"
+                    Maximum="255"
+                    Minimum="0" />
+            <BoxView HeightRequest="100"
+                     HorizontalOptions="Center"
+                     WidthRequest="100">
+                <BoxView.Color>
+                    <MultiBinding Converter="{x:StaticResource RgbToColorConverter}">
+                        <Binding Path="Value"
+                                 Source="{x:Reference redSlider}"/>
+                        <Binding Path="Value"
+                                 Source="{x:Reference greenSlider}" />
+                        <Binding Path="Value"
+                                 Source="{x:Reference blueSlider}" />
+                    </MultiBinding>
+                </BoxView.Color>
+            </BoxView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
