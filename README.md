@@ -14,3 +14,10 @@ Dostepne technologie (biblioteki) na platformie .net.
 * aplikacje desktopowe/mobilne (np. WinForms, WPF, MAUI itp.)
 * APS.NET
 * i inne.
+
+
+Referat 2
+
+Czym jest sztuczna inteligencja? — definicje, historia i zastosowania
+
+→ Wprowadzenie do pojęcia AI, od klasycznych algorytmów po uczenie maszynowe.
