@@ -14,6 +14,7 @@
 
         public MainPage()
         {
+            //BindingContext = this;
             InitializeComponent();
         }
 
