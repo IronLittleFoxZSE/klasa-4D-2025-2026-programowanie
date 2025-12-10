@@ -21,3 +21,12 @@ Referat 2
 Czym jest sztuczna inteligencja? — definicje, historia i zastosowania
 
 → Wprowadzenie do pojęcia AI, od klasycznych algorytmów po uczenie maszynowe.
+
+
+Referat 3
+Podstawy i dobre praktyki
+
+* SOLID – zasady projektowania obiektowego i ich znaczenie w dużych projektach.
+* Wzorce projektowe (Design Patterns) – najważniejsze i kiedy je stosować.
+* Refaktoryzacja kodu – jak poprawiać jakość bez zmiany funkcjonalności.
+* Testy jednostkowe i TDD – dlaczego warto pisać testy i jak to robić dobrze.
