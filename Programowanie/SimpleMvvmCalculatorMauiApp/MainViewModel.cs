@@ -1,4 +1,5 @@
-﻿using System;
+using SimpleMvvmCalculatorMauiApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,39 @@ namespace SimpleMvvmCalculatorMauiApp
 {
     internal class MainViewModel : BindableObject
     {
-        public string FirstStrNumber { get; set; }
-        public string SecondStrNumber { get; set; }
+        public string FirstStrNumber 
+        {
+            get { return dataRepository.firstStrNumber; }
+            set { dataRepository.firstStrNumber = value; } 
+        }
 
-        private string result;
+        public string SecondStrNumber
+        {
+            get { return dataRepository.secondStrNumber; }
+            set { dataRepository.secondStrNumber = value; }
+        }
+
         public string Result
         {
-            get { return result; }
-            set { result = value; OnPropertyChanged(); }
+            get { return dataRepository.result; }
+            set { dataRepository.result = value; OnPropertyChanged(); }
         }
+
+        private bool withServises;
+        public bool WithServises
+        {
+            get { return withServises; }
+            set 
+            { 
+                withServises = value;
+                if (withServises)
+                    service = new DivService();
+                else
+                    service = new SumService();
+                OnPropertyChanged(); 
+            }
+        }
+
 
         private Command calcCommand;
         public Command CalcCommand
@@ -30,13 +55,15 @@ namespace SimpleMvvmCalculatorMauiApp
                     calcCommand = new Command(
                         () =>
                         {
-                            if (!int.TryParse(FirstStrNumber, out int firstNumber)
+                            /*if (!int.TryParse(FirstStrNumber, out int firstNumber)
                                 || !int.TryParse(SecondStrNumber, out int secondNumber))
                                 return;
 
                             int sum = firstNumber + secondNumber;
 
-                            Result = $"Wynik to {sum}";
+                            Result = $"Wynik to {sum}";*/
+
+                            Result = service.Calculate(FirstStrNumber, SecondStrNumber);
                         }
                         );
                 return calcCommand;
@@ -44,9 +71,16 @@ namespace SimpleMvvmCalculatorMauiApp
             //set { calcCommand = value; }
         }
 
+        private IArytmeticService service;
+        private DataRepository dataRepository;
+
         public MainViewModel()
         {
             //CalcCommand = new Command(Calc);
+            //service = new SumService();
+            //service = new DivService();
+            WithServises = true;
+            dataRepository = new DataRepository();
         }
 
 
