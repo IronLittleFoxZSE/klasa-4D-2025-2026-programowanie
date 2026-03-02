@@ -1,0 +1,13 @@
+1. Stworzenie bazy
+
+People4D2026
+
+2. Dodanie tabel
+
+
+CREATE TABLE Addresses (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Street VARCHAR(150) NOT NULL,
+    City VARCHAR(100) NOT NULL,
+    PRIMARY KEY (Id)
+);
