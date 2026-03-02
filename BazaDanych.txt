@@ -15,4 +15,20 @@ CREATE TABLE Person (
 );
 
 
+3. Uzupenienie danych
+
+
+INSERT INTO Person (Name, Surname, Age) VALUES
+('Jan', 'Kowalski', 30),
+('Anna', 'Nowak', 25),
+('Piotr', 'Wiśniewski', 40),
+('Katarzyna', 'Lewandowska', 35),
+('Marek', 'Kamiński', 28),
+('Ewa', 'Zielińska', 32),
+('Tomasz', 'Szymański', 45),
+('Agnieszka', 'Dąbrowska', 29),
+('Łukasz', 'Wójcik', 38),
+('Paweł', 'Kozłowski', 33);
+
+
 
