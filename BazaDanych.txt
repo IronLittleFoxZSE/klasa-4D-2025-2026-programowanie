@@ -4,8 +4,6 @@ People4D2026
 
 2. Dodanie tabel
 
-
-
 CREATE TABLE Person (
     Id INT NOT NULL AUTO_INCREMENT,
     Name VARCHAR(100) NOT NULL,
@@ -16,7 +14,6 @@ CREATE TABLE Person (
 
 
 3. Uzupenienie danych
-
 
 INSERT INTO Person (Name, Surname, Age) VALUES
 ('Jan', 'Kowalski', 30),
@@ -31,4 +28,10 @@ INSERT INTO Person (Name, Surname, Age) VALUES
 ('Paweł', 'Kozłowski', 33);
 
 
+3. Utworzenie projektu
 
+4. Otwieramy folder z projektem
+5. Otwieramy CMD i przechodzimy do folderu z projektem
+
+6. wykonujemy polecenie (TYLKO RAZ)
+dotnet tool install --global dotnet-ef
