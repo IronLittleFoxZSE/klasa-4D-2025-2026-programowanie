@@ -35,3 +35,11 @@ INSERT INTO Person (Name, Surname, Age) VALUES
 
 6. wykonujemy polecenie (TYLKO RAZ)
 dotnet tool install --global dotnet-ef
+
+7. Dodajemy biblioteki
+
+*. Do projektu dodajemy nugety
+
+Microsoft.EntityFrameworkCore Version="9.0.13"
+Microsoft.EntityFrameworkCore.Relational Version="9.0.13"
+Microsoft.EntityFrameworkCore.Tools Version="9.0.13"
