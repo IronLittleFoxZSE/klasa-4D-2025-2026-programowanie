@@ -28,24 +28,22 @@ INSERT INTO Person (Name, Surname, Age) VALUES
 ('Paweł', 'Kozłowski', 33);
 
 
-3. Utworzenie projektu
+3. Tworzymy projekt reposytorium dla bazy danych
 
-4. Otwieramy folder z projektem
-5. Otwieramy CMD i przechodzimy do folderu z projektem
+4. Otwieramy folder z projektem repozytorium bazy danych (PPM na projekcie i otwieramy File Explorer; opcja pod koniec menu)
+5. Otwieramy CMD i przechodzimy do folderu z projektem repozytorium bazy danych
 
-6. wykonujemy polecenie (TYLKO RAZ)
+6. Wykonujemy polecenie w CMD (TYLKO RAZ!!!!). Polecenie to instaluje rozszeżenie do platformy .NET.
 dotnet tool install --global dotnet-ef
 
-7. Dodajemy biblioteki
-
-8. Do projektu dodajemy nugety
+7. Do projektu repozytorium bazy danych dodajemy biblioteki. PPM na projekcie i wybieramy "Manage NuGet Packages..."
 
 Microsoft.EntityFrameworkCore Version="9.0.13"
 Microsoft.EntityFrameworkCore.Relational Version="9.0.13"
 Microsoft.EntityFrameworkCore.Tools Version="9.0.13"
 Pomelo.EntityFrameworkCore.MySql Version="9.0.0"
 
-9. Wykonujemy polecenie w CMD
+9. Wykonujemy polecenie w CMD. W poleceniu należy wpisać swoją nazwę bazy w connectionString oraz nazwę klasy dla parametru --context
 
 dotnet ef dbcontext scaffold "server=localhost;database=people4d2026;user=root" Pomelo.EntityFrameworkCore.MySql --output-dir Models --context PeopleDBContext --context-dir .
 
