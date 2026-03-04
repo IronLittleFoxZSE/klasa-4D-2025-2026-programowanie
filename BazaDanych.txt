@@ -1,0 +1,55 @@
+1. Stworzenie bazy
+
+People4D2026
+
+2. Dodanie tabel
+
+CREATE TABLE Person (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Surname VARCHAR(100) NOT NULL,
+    Age INT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+
+3. Uzupenienie danych
+
+INSERT INTO Person (Name, Surname, Age) VALUES
+('Jan', 'Kowalski', 30),
+('Anna', 'Nowak', 25),
+('Piotr', 'Wiśniewski', 40),
+('Katarzyna', 'Lewandowska', 35),
+('Marek', 'Kamiński', 28),
+('Ewa', 'Zielińska', 32),
+('Tomasz', 'Szymański', 45),
+('Agnieszka', 'Dąbrowska', 29),
+('Łukasz', 'Wójcik', 38),
+('Paweł', 'Kozłowski', 33);
+
+
+3. Tworzymy projekt reposytorium dla bazy danych
+
+4. Otwieramy folder z projektem repozytorium bazy danych (PPM na projekcie i otwieramy File Explorer; opcja pod koniec menu)
+5. Otwieramy CMD i przechodzimy do folderu z projektem repozytorium bazy danych
+
+6. Wykonujemy polecenie w CMD (TYLKO RAZ!!!!). Polecenie to instaluje rozszeżenie do platformy .NET.
+dotnet tool install --global dotnet-ef
+
+7. Do projektu repozytorium bazy danych dodajemy biblioteki. PPM na projekcie i wybieramy "Manage NuGet Packages..."
+
+Microsoft.EntityFrameworkCore Version="9.0.13"
+Microsoft.EntityFrameworkCore.Relational Version="9.0.13"
+Microsoft.EntityFrameworkCore.Tools Version="9.0.13"
+Pomelo.EntityFrameworkCore.MySql Version="9.0.0"
+
+9. Wykonujemy polecenie w CMD. W poleceniu należy wpisać swoją nazwę bazy w connectionString oraz nazwę klasy dla parametru --context
+
+dotnet ef dbcontext scaffold "server=localhost;database=people4d2026;user=root" Pomelo.EntityFrameworkCore.MySql --output-dir Models --context PeopleDBContext --context-dir .
+
+dotnet ef dbcontext scaffold
+"server=localhost;database=people4d2026;user=root"
+Pomelo.EntityFrameworkCore.MySql
+--output-dir Models
+--context PeopleDBContext
+--context-dir .
