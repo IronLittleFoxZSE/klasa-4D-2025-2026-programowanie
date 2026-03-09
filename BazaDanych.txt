@@ -28,15 +28,15 @@ INSERT INTO People (Name, Surname, Age) VALUES
 ('Paweł', 'Kozłowski', 33);
 
 
-3. Tworzymy projekt reposytorium dla bazy danych
+4. Tworzymy projekt reposytorium dla bazy danych
 
-4. Otwieramy folder z projektem repozytorium bazy danych (PPM na projekcie i otwieramy File Explorer; opcja pod koniec menu)
-5. Otwieramy CMD i przechodzimy do folderu z projektem repozytorium bazy danych
+5. Otwieramy folder z projektem repozytorium bazy danych (PPM na projekcie i otwieramy File Explorer; opcja pod koniec menu)
+6. Otwieramy CMD i przechodzimy do folderu z projektem repozytorium bazy danych
 
-6. Wykonujemy polecenie w CMD (TYLKO RAZ!!!!). Polecenie to instaluje rozszeżenie do platformy .NET.
+7. Wykonujemy polecenie w CMD (TYLKO RAZ!!!!). Polecenie to instaluje rozszeżenie do platformy .NET.
 dotnet tool install --global dotnet-ef
 
-7. Do projektu repozytorium bazy danych dodajemy biblioteki. PPM na projekcie i wybieramy "Manage NuGet Packages..."
+8. Do projektu repozytorium bazy danych dodajemy biblioteki. PPM na projekcie i wybieramy "Manage NuGet Packages..."
 
 Microsoft.EntityFrameworkCore Version="9.0.13"
 Microsoft.EntityFrameworkCore.Relational Version="9.0.13"
@@ -53,3 +53,35 @@ Pomelo.EntityFrameworkCore.MySql
 --output-dir Models
 --context PeopleDBContext
 --context-dir .
+
+
+*. Dodajemy nową tabelę, powiązania i dane do nich
+
+
+CREATE TABLE Addresses (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Street VARCHAR(150) NOT NULL,
+    City VARCHAR(100) NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+INSERT INTO Addresses (Street, City) VALUES
+('Kwiatowa 12', 'Kielce'),
+('Lipowa 5', 'Warszawa'),
+('Słoneczna 8', 'Kraków'),
+('Leśna 21', 'Gdańsk'),
+('Południowa 3', 'Poznań');
+
+ALTER TABLE People
+ADD COLUMN AddressId INT NULL;
+
+ALTER TABLE People
+ADD CONSTRAINT FK_People_Addresses
+FOREIGN KEY (AddressId) REFERENCES Addresses(Id);
+
+
+UPDATE People SET AddressId = 1 WHERE Id IN (1, 2);
+UPDATE People SET AddressId = 2 WHERE Id IN (3, 4);
+UPDATE People SET AddressId = 3 WHERE Id IN (5, 6);
+UPDATE People SET AddressId = 4 WHERE Id IN (7, 8);
+UPDATE People SET AddressId = 5 WHERE Id IN (9, 10);
