@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeopleDatabaseMauiApp.MainPage"
+             xmlns:local="clr-namespace:PeopleDatabaseMauiApp"
+             xmlns:converters="clr-namespace:PeopleDatabaseMauiApp.Converters">
+    <ContentPage.BindingContext>
+        <local:MainVievModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <converters:ObjectExistsConverter x:Key="ObjectExistsConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Spacing="10">
+            <Button Text="Odswiez liste"
+                    Command="{Binding RefreshPeopleCommand}" />
+
+            <Label Text="Lista osob:"
+                   FontSize="20"
+                   FontAttributes="Bold" />
+
+            <CollectionView ItemsSource="{Binding People}"
+                            SelectedItem="{Binding SelectedPerson}"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding SelectedPersonChangeCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="10">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Surname}" />
+                            <Label Text="{Binding Age}" />
+                            <Label Text="{Binding City}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout IsVisible="{Binding PersonToUpdate, Converter={x:StaticResource ObjectExistsConverter}}">
+                <Label Text="Modyfikacja wiersza:"
+                       FontSize="20"
+                       FontAttributes="Bold" />
+                <StackLayout BindingContext="{Binding PersonToUpdate}">
+                    <Label Text="Imie:" />
+                    <Entry Text="{Binding Name}" />
+                    <Label Text="Nazwisko:" />
+                    <Entry Text="{Binding Surname}" />
+                    <Label Text="Wiek:" />
+                    <Entry Text="{Binding Age}" />
+
+                </StackLayout>
+                <Button Text="Aktualizacja danych"
+                        Command="{Binding UpdatePersonCommand}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

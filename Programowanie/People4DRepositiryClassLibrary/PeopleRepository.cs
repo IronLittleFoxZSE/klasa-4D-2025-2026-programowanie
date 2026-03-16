@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using People4DRepositiryClassLibrary.DTOs;
 using People4DRepositiryClassLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,8 @@ namespace People4DRepositiryClassLibrary
 
         /*
         select *
-        from people4d2026.people
+        from people4d2026.people p
+        left join addresses a on a.Id = p.AddressId
         order by Name, Surname
 
          */
@@ -57,8 +59,20 @@ namespace People4DRepositiryClassLibrary
         {
             return context.People
                 .AsNoTracking()
+                .Include(p => p.Address)
                 .OrderBy(p => p.Name)
                 .ThenBy(p => p.Surname)
+                .ToList();
+        }
+
+        public List<PersonDto> GetAllPeopleDto()
+        {
+            return context.People
+                .AsNoTracking()
+                .Include(p => p.Address)
+                .OrderBy(p => p.Name)
+                .ThenBy(p => p.Surname)
+                .Select(p => new PersonDto() { Id = p.Id, Name = p.Name, Surname = p.Surname, Age = p.Age, City = (p.Address != null ? p.Address.City : "") })
                 .ToList();
         }
 
@@ -71,6 +85,20 @@ namespace People4DRepositiryClassLibrary
             if (person != null)
             {
                 person.Name = newName;
+
+                context.SaveChanges();
+            }
+        }
+
+        public void UpdatePerson(int id, string name, string surname, int age)
+        {
+            Person? person = context.People.FirstOrDefault(p => p.Id == id);
+
+            if (person != null)
+            {
+                person.Name = name;
+                person.Surname = surname;
+                person.Age = age;
 
                 context.SaveChanges();
             }

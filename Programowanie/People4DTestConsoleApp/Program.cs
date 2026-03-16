@@ -14,6 +14,10 @@ Console.WriteLine("Lista wszystkich osób posortowanych po imieniu i nazwisku");
 foreach (Person person in people)
 {
     Console.WriteLine($"{person.Id} {person.Name} {person.Surname} lat {person.Age}");
+    if (person.Address != null)
+    {
+        Console.WriteLine($"\t\tMieszka pod adresem {person.Address.Street} {person.Address.City}");
+    }
 }
 
 people.Last().Name = "XXXXXXXX";
