@@ -98,3 +98,74 @@ Pomelo.EntityFrameworkCore.MySql
 --context-dir .
 --force
 --data-annotations
+
+
+
+
+ZADANIE 2
+
+* Baza
+
+
+
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_text VARCHAR(500) NOT NULL
+);
+
+CREATE TABLE answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    answer_text VARCHAR(500) NOT NULL,
+    is_correct BOOLEAN NOT NULL DEFAULT FALSE,
+    question_id INT NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES questions(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+
+INSERT INTO questions (question_text) VALUES
+('Ile to jest 2 + 2?'),
+('Jaki kolor ma niebo?'),
+('Które zwierzę szczeka?'),
+('Jaka jest stolica Francji?'),
+('Która liczba jest parzysta?');
+
+-- ODPOWIEDZI DO PYTANIA 1 (Ile to jest 2 + 2?) - id = 1
+INSERT INTO answers (answer_text, is_correct, question_id) VALUES
+('3', FALSE, 1),
+('4', TRUE, 1),
+('5', FALSE, 1);
+
+-- ODPOWIEDZI DO PYTANIA 2 (Jaki kolor ma niebo?) - id = 2
+INSERT INTO answers (answer_text, is_correct, question_id) VALUES
+('Niebieski', TRUE, 2),
+('Zielony', FALSE, 2),
+('Czerwony', FALSE, 2),
+('Żółty', FALSE, 2);
+
+-- ODPOWIEDZI DO PYTANIA 3 (Które zwierzę szczeka?) - id = 3
+INSERT INTO answers (answer_text, is_correct, question_id) VALUES
+('Pies', TRUE, 3),
+('Kot', FALSE, 3),
+('Krowa', FALSE, 3),
+('Koń', FALSE, 3);
+
+-- ODPOWIEDZI DO PYTANIA 4 (Jaka jest stolica Francji?) - id = 4
+INSERT INTO answers (answer_text, is_correct, question_id) VALUES
+('Paryż', TRUE, 4),
+('Londyn', FALSE, 4),
+('Berlin', FALSE, 4),
+('Madryt', FALSE, 4);
+
+-- ODPOWIEDZI DO PYTANIA 5 (Która liczba jest parzysta?) - id = 5
+INSERT INTO answers (answer_text, is_correct, question_id) VALUES
+('3', FALSE, 5),
+('6', TRUE, 5),
+('7', FALSE, 5),
+('9', FALSE, 5),
+('11', FALSE, 5);
+
+
+dotnet ef dbcontext scaffold "server=localhost;database=quiz4d;user=root" Pomelo.EntityFrameworkCore.MySql --output-dir Models --context PeopleDBContext --context-dir . --force --data-annotations
