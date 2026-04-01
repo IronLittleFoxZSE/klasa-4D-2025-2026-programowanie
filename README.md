@@ -11,3 +11,7 @@ Komputer 2,4,6,8,10,12,14,16
 Referat 1.
 
 Podstawy kryptografii w programowaniu
+
+Referat 2
+
+Kod źródłowy, kompilator i interpreter – proste wyjaśnienie
