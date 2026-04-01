@@ -169,3 +169,70 @@ INSERT INTO answers (answer_text, is_correct, question_id) VALUES
 
 
 dotnet ef dbcontext scaffold "server=localhost;database=quiz4d;user=root" Pomelo.EntityFrameworkCore.MySql --output-dir Models --context PeopleDBContext --context-dir . --force --data-annotations
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+FOLDER MODELS
+
+public partial class Plan
+{
+    [Key]
+    public int Id { get; set; }
+
+    public string Text { get; set; } = null!;
+
+    public int PlannerdayId { get; set; }
+
+    public virtual Plannerday Plannerday { get; set; } = null!;
+}
+
+
+public partial class Plannerday
+{
+    [Key]
+    public int Id { get; set; }
+    public int Day { get; set; }
+
+    public int Month { get; set; }
+
+    public int Year { get; set; }
+
+    public virtual ICollection<Plan> Plans { get; set; } = new List<Plan>();
+}
+
+public partial class DayPlannerDBContext : DbContext
+{
+    public DayPlannerDBContext()
+    {
+    }
+
+    public DayPlannerDBContext(DbContextOptions<DayPlannerDBContext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Plan> Plans { get; set; }
+
+    public virtual DbSet<Plannerday> Plannerdays { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.UseMySql("server=localhost;database=dayplanner4d;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.32-mariadb"));
+
+}
+
+
+
+
+dotnet ef migrations add NazwaMigracji
+
+dotnet ef database update
