@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DayPlannerMauiApp.MainPage"
+             xmlns:local="clr-namespace:DayPlannerMauiApp">
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Planer"
+                   HorizontalOptions="Center"
+                   FontSize="30" />
+
+            <Label Text="Wybiarz datę do wyświetlenia"
+                   FontSize="30"
+                   FontAttributes="Bold" />
+            <StackLayout Orientation="Horizontal">
+                <StackLayout>
+                    <Label Text="Rok" />
+                    <Picker ItemsSource="{Binding PlannerYearFilter}"
+                            SelectedItem="{Binding SelectedYearFilter}" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Miesiąc" />
+                    <Picker ItemsSource="{Binding PlannerMonthFilter}"
+                            SelectedItem="{Binding SelectedMonthFilter}" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Dzień" />
+                    <Picker ItemsSource="{Binding PlannerDayFilter}"
+                            SelectedItem="{Binding SelectedDayFilter}" />
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Odśwież listę"
+                    Command="{Binding GetPlansCommand}" />
+
+            <CollectionView ItemsSource="{Binding Plans}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Label Grid.Column="0"
+                                   Text="{Binding Text}" />
+                            <Button Grid.Column="1"
+                                    Text="Usu�"
+                                    Command="{Binding DeleteCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout>
+                <Label Text="Nowy plan:"
+                       FontSize="30"
+                       FontAttributes="Bold" />
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Label Text="Dzień" />
+                        <Picker ItemsSource="{Binding NewDays}"
+                                SelectedItem="{Binding SelectedNewDay}" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Miesiąc" />
+                        <Picker ItemsSource="{Binding NewMonths}"
+                                SelectedItem="{Binding SelectedNewMonth}" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Rok" />
+                        <Picker ItemsSource="{Binding NewYears}"
+                                SelectedItem="{Binding SelectedNewYear}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Treść:" />
+                    <Entry Text="{Binding NewPlanText}" />
+                </StackLayout>
+                <Button Text="Dodaj plan"
+                        Command="{Binding AddNewPlanCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

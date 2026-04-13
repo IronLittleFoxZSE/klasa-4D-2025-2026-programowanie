@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizDatabaseMauiApp.MainPage"
+             xmlns:local="clr-namespace:QuizDatabaseMauiApp">
+    <ContentPage.BindingContext>
+        <local:MainVievModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="{Binding Question.Id, StringFormat='Numer pytania: {0}'}"
+                   HorizontalOptions="End" />
+            <Label Text="{Binding Question.QuestionText}"
+                   LineBreakMode="WordWrap"
+                   FontSize="20"
+                   FontAttributes="Bold" />
+            <StackLayout BindableLayout.ItemsSource="{Binding Answers}"
+                         RadioButtonGroup.GroupName="Answers"
+                         RadioButtonGroup.SelectedValue="{Binding SelectedAnswer}"
+                         IsEnabled="{Binding CanAnswer}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <RadioButton Value="{Binding}" />
+                            <Label Text="{Binding AnswerText}"
+                                   TextColor="{Binding Color}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <Grid ColumnDefinitions="auto,*,auto">
+                <Button Text="Sprawdź"
+                        Command="{Binding CheckQuestionCommand}"
+                        IsEnabled="{Binding IsQuizInProgress}" />
+                <Button Text="Nastepne"
+                        Grid.Column="2"
+                        Command="{Binding NextQuestionCommand}"
+                        IsEnabled="{Binding IsQuizInProgress}" />
+            </Grid>
+            <Label Text="{Binding CountOfCorrect, StringFormat='Ilość prawidłowych odpowiedzi {0}'}" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
