@@ -15,3 +15,7 @@ Podstawy kryptografii w programowaniu
 Referat 2
 
 Kod źródłowy, kompilator i interpreter – proste wyjaśnienie
+
+Referat 3
+
+Historia informatyki – od pierwszych komputerów do AI
