@@ -19,3 +19,7 @@ Kod źródłowy, kompilator i interpreter – proste wyjaśnienie
 Referat 3
 
 Historia informatyki – od pierwszych komputerów do AI
+
+Referat 4
+
+Algorytmy sortowania — porównanie działania, złożoności i zastosowań (np. Bubble Sort vs QuickSort).
